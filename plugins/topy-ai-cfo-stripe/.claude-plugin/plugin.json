@@ -1,0 +1,20 @@
+{
+	"name": "topy-ai-cfo-stripe",
+	"version": "0.1.0",
+	"description": "TOPY AI CFO Stripe service agent skills (3): Stripe's official MCP (money moves), Stripe revenue operations, Stripe into the books. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+	"author": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai",
+		"url": "https://topy.ai"
+	},
+	"homepage": "https://topy.ai/developers",
+	"repository": "https://github.com/TOPY-AI-LTD/TOPY-AI-CFO-Skills",
+	"license": "MIT",
+	"keywords": [
+		"topy.ai",
+		"ai-cfo",
+		"bookkeeping",
+		"stripe"
+	],
+	"privacyPolicyUrl": "https://topy.ai/privacy"
+}

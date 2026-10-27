@@ -1,0 +1,525 @@
+{
+	"name": "TOPY.AI AI CFO skills",
+	"description": "AI CFO skills for founders, built for TOPY.AI: a senior CFO, accountant and bookkeeper on your own Stripe and QuickBooks. Core skills run on the TOPY CFO MCP server (https://topy.ai/mcp/cfo); QuickBooks' bank feed and rules are done in Chrome with the checks in each skill; standalone skills are finance methods that work anywhere.",
+	"version": "0.1.0",
+	"updated": "2026-10-27",
+	"publisher": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai",
+		"url": "https://topy.ai"
+	},
+	"install": {
+		"claude_code": "/plugin marketplace add TOPY-AI-LTD/TOPY-AI-CFO-Skills",
+		"npm": "npx @topy-ai/cfo-skills install",
+		"mcp_server": "https://topy.ai/mcp/cfo"
+	},
+	"tiers": {
+		"core": "Runs on the TOPY MCP server; needs a TOPY account.",
+		"connected": "Uses TOPY data and actions when the MCP server is connected; works on its own otherwise.",
+		"standalone": "A finance method that works with any agent; can save results to TOPY where it fits."
+	},
+	"categories": [
+		{
+			"id": "core",
+			"name": "AI CFO core (MCP)",
+			"plugin": "topy-ai-cfo",
+			"count": 4
+		},
+		{
+			"id": "bookkeeping",
+			"name": "Bookkeeping & close",
+			"plugin": "topy-ai-cfo-bookkeeping",
+			"count": 4
+		},
+		{
+			"id": "stripe",
+			"name": "Stripe service agent",
+			"plugin": "topy-ai-cfo-stripe",
+			"count": 3
+		},
+		{
+			"id": "quickbooks",
+			"name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"count": 5
+		},
+		{
+			"id": "reporting",
+			"name": "Reporting & runway",
+			"plugin": "topy-ai-cfo-reporting",
+			"count": 3
+		},
+		{
+			"id": "compliance",
+			"name": "UK compliance",
+			"plugin": "topy-ai-cfo-compliance",
+			"count": 3
+		}
+	],
+	"skills": [
+		{
+			"id": "topy-cfo-brief",
+			"name": "Daily CFO brief",
+			"category": "core",
+			"category_name": "AI CFO core (MCP)",
+			"plugin": "topy-ai-cfo",
+			"tier": "core",
+			"summary": "The founder's daily money check in five lines — cash in the banks and Stripe, runway, last month's close, the next deadline, anything failed or disputed — silent when nothing changed.",
+			"mcp_tools": [
+				"cfo_brief",
+				"stripe_failed_payments",
+				"stripe_disputes_list",
+				"cfo_goals_get"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close",
+				"topy-cfo-runway",
+				"stripe-revenue-ops"
+			],
+			"path": "plugins/topy-ai-cfo/skills/topy-cfo-brief/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-connect",
+			"name": "Connect the AI CFO",
+			"category": "core",
+			"category_name": "AI CFO core (MCP)",
+			"plugin": "topy-ai-cfo",
+			"tier": "core",
+			"summary": "Connects the founder's AI CFO — the TOPY CFO MCP server, Stripe (read-only key), QuickBooks (sign in with Intuit) and the company facts from Companies House.",
+			"mcp_tools": [
+				"account_get",
+				"integrations_list",
+				"integration_connect_link",
+				"cfo_company_get",
+				"cfo_company_set",
+				"cfo_deadlines"
+			],
+			"pairs_with": [
+				"topy-cfo-setup",
+				"topy-cfo-brief"
+			],
+			"path": "plugins/topy-ai-cfo/skills/topy-cfo-connect/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-goals",
+			"name": "CFO goals",
+			"category": "core",
+			"category_name": "AI CFO core (MCP)",
+			"plugin": "topy-ai-cfo",
+			"tier": "core",
+			"summary": "Sets the AI CFO's goals — cash safety, books closed on time, zero late filings, healthy unit economics — as objectives under the CEO's goal tree, so every finance task serves one.",
+			"mcp_tools": [
+				"cfo_goals_get",
+				"cfo_goals_setup",
+				"cfo_brief",
+				"objectives_list",
+				"kpis_list",
+				"cfo_company_set"
+			],
+			"pairs_with": [
+				"topy-cfo-brief",
+				"topy-cfo-runway"
+			],
+			"path": "plugins/topy-ai-cfo/skills/topy-cfo-goals/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-setup",
+			"name": "First set-up of the books",
+			"category": "core",
+			"category_name": "AI CFO core (MCP)",
+			"plugin": "topy-ai-cfo",
+			"tier": "core",
+			"summary": "The first set-up of a small UK company's books with the AI CFO — company facts, share capital as Companies House shows it, Stripe booked month by month, bank transfers paired, suppliers and bank rules — until every bank and Stripe account equals reality.",
+			"mcp_tools": [
+				"cfo_company_get",
+				"cfo_share_capital",
+				"qbo_accounts_list",
+				"qbo_customers_list",
+				"qbo_journal_create",
+				"books_stripe_preview",
+				"books_stripe_apply",
+				"qbo_bank_feed_expectations",
+				"qbo_bank_rules_suggest",
+				"cfo_close_status"
+			],
+			"pairs_with": [
+				"topy-cfo-connect",
+				"stripe-to-books",
+				"qbo-bank-feed-match",
+				"qbo-bank-rules",
+				"topy-cfo-share-capital"
+			],
+			"path": "plugins/topy-ai-cfo/skills/topy-cfo-setup/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-categorise",
+			"name": "Categorise transactions (UK)",
+			"category": "bookkeeping",
+			"category_name": "Bookkeeping & close",
+			"plugin": "topy-ai-cfo-bookkeeping",
+			"tier": "connected",
+			"summary": "How a UK bookkeeper categorises a small company's transactions — which account, the tax effect, and when to ask — with suppliers created in QuickBooks.",
+			"mcp_tools": [
+				"qbo_accounts_list",
+				"qbo_vendors_list",
+				"qbo_vendor_create",
+				"qbo_account_create",
+				"qbo_bank_rule_save"
+			],
+			"pairs_with": [
+				"qbo-bank-rules",
+				"topy-cfo-month-end-close"
+			],
+			"path": "plugins/topy-ai-cfo-bookkeeping/skills/topy-cfo-categorise/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-journals",
+			"name": "Journals and adjustments",
+			"category": "bookkeeping",
+			"category_name": "Bookkeeping & close",
+			"plugin": "topy-ai-cfo-bookkeeping",
+			"tier": "core",
+			"summary": "Books the journals a bookkeeper needs — accruals, prepayments, reclassifications, corrections — balanced, numbered once and previewed before they reach QuickBooks.",
+			"mcp_tools": [
+				"qbo_journal_create",
+				"qbo_accounts_list",
+				"qbo_report",
+				"qbo_transactions_list"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close",
+				"topy-cfo-year-end"
+			],
+			"path": "plugins/topy-ai-cfo-bookkeeping/skills/topy-cfo-journals/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-month-end-close",
+			"name": "Month-end close",
+			"category": "bookkeeping",
+			"category_name": "Bookkeeping & close",
+			"plugin": "topy-ai-cfo-bookkeeping",
+			"tier": "core",
+			"summary": "Closes a month the way a senior accountant does — Stripe booked and reconciled, bank feed cleared, nothing uncategorised, every bank reconciled to its statement — then management accounts and the c-level reports.",
+			"mcp_tools": [
+				"cfo_close_status",
+				"books_stripe_preview",
+				"books_stripe_apply",
+				"cfo_bank_balance_record",
+				"cfo_management_accounts",
+				"cfo_report",
+				"qbo_bank_feed_expectations"
+			],
+			"pairs_with": [
+				"stripe-to-books",
+				"qbo-bank-feed-match",
+				"qbo-bank-rules",
+				"qbo-reconcile",
+				"topy-cfo-management-accounts"
+			],
+			"path": "plugins/topy-ai-cfo-bookkeeping/skills/topy-cfo-month-end-close/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-share-capital",
+			"name": "Share capital",
+			"category": "bookkeeping",
+			"category_name": "Bookkeeping & close",
+			"plugin": "topy-ai-cfo-bookkeeping",
+			"tier": "core",
+			"summary": "Keeps share capital as Companies House shows it — shares issued at their nominal value, what each shareholder still owes, and their payments booked against it, not as income.",
+			"mcp_tools": [
+				"cfo_share_capital",
+				"qbo_journal_create",
+				"qbo_customers_list",
+				"cap_table_get",
+				"qbo_bank_rule_save"
+			],
+			"pairs_with": [
+				"topy-cfo-setup",
+				"qbo-bank-rules"
+			],
+			"path": "plugins/topy-ai-cfo-bookkeeping/skills/topy-cfo-share-capital/SKILL.md"
+		},
+		{
+			"id": "stripe-official-mcp",
+			"name": "Stripe's official MCP (money moves)",
+			"category": "stripe",
+			"category_name": "Stripe service agent",
+			"plugin": "topy-ai-cfo-stripe",
+			"tier": "connected",
+			"summary": "When money must move in Stripe — a refund, a payment link, a subscription change — the CFO drafts it and the founder does it through Stripe's official MCP server or dashboard, never through TOPY's read-only key.",
+			"mcp_tools": [
+				"stripe_overview",
+				"stripe_revenue_summary"
+			],
+			"pairs_with": [
+				"stripe-revenue-ops",
+				"stripe-to-books"
+			],
+			"path": "plugins/topy-ai-cfo-stripe/skills/stripe-official-mcp/SKILL.md"
+		},
+		{
+			"id": "stripe-revenue-ops",
+			"name": "Stripe revenue operations",
+			"category": "stripe",
+			"category_name": "Stripe service agent",
+			"plugin": "topy-ai-cfo-stripe",
+			"tier": "core",
+			"summary": "The CFO's watch on Stripe — balance and payouts, the month's sales, refunds and fees, failed payments and disputes — with the chasing handed to the CRO.",
+			"mcp_tools": [
+				"stripe_overview",
+				"stripe_revenue_summary",
+				"stripe_failed_payments",
+				"stripe_disputes_list",
+				"stripe_payouts_list"
+			],
+			"pairs_with": [
+				"stripe-to-books",
+				"topy-cfo-clevel-reports"
+			],
+			"path": "plugins/topy-ai-cfo-stripe/skills/stripe-revenue-ops/SKILL.md"
+		},
+		{
+			"id": "stripe-to-books",
+			"name": "Stripe into the books",
+			"category": "stripe",
+			"category_name": "Stripe service agent",
+			"plugin": "topy-ai-cfo-stripe",
+			"tier": "core",
+			"summary": "Books Stripe in QuickBooks the way an accountant does — one journal per month (sales by plan, refunds, fees) and one transfer per payout — so the Stripe account always equals Stripe's balance and each payout matches the bank.",
+			"mcp_tools": [
+				"books_stripe_preview",
+				"books_stripe_apply",
+				"stripe_overview",
+				"qbo_bank_feed_expectations",
+				"qbo_accounts_list"
+			],
+			"pairs_with": [
+				"qbo-bank-feed-match",
+				"topy-cfo-month-end-close"
+			],
+			"path": "plugins/topy-ai-cfo-stripe/skills/stripe-to-books/SKILL.md"
+		},
+		{
+			"id": "qbo-bank-feed-match",
+			"name": "Match the bank feed (Chrome)",
+			"category": "quickbooks",
+			"category_name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"tier": "core",
+			"summary": "Matches QuickBooks' bank feed in Chrome — Stripe payouts to their transfers, transfers between the company's own accounts paired — acting only where the date and amount match exactly, with every key press checked first.",
+			"mcp_tools": [
+				"qbo_bank_feed_expectations",
+				"qbo_transactions_list",
+				"qbo_accounts_list"
+			],
+			"pairs_with": [
+				"stripe-to-books",
+				"qbo-bank-rules",
+				"topy-cfo-month-end-close"
+			],
+			"path": "plugins/topy-ai-cfo-quickbooks/skills/qbo-bank-feed-match/SKILL.md"
+		},
+		{
+			"id": "qbo-bank-rules",
+			"name": "Bank rules (Chrome)",
+			"category": "quickbooks",
+			"category_name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"tier": "core",
+			"summary": "Creates QuickBooks bank rules in Chrome from the CFO's rule list — supplier, account, conditions, auto-post — testing each rule's match count before saving, so recurring transactions post themselves correctly.",
+			"mcp_tools": [
+				"qbo_bank_rules_suggest",
+				"qbo_bank_rules_list",
+				"qbo_bank_rule_save",
+				"qbo_vendor_create",
+				"qbo_transactions_list",
+				"qbo_accounts_list"
+			],
+			"pairs_with": [
+				"topy-cfo-categorise",
+				"qbo-bank-feed-match"
+			],
+			"path": "plugins/topy-ai-cfo-quickbooks/skills/qbo-bank-rules/SKILL.md"
+		},
+		{
+			"id": "qbo-close-books",
+			"name": "Lock a closed month",
+			"category": "quickbooks",
+			"category_name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"tier": "core",
+			"summary": "After a close, sets QuickBooks' closing date in Chrome (with the founder's yes) so nobody changes a reported month by accident.",
+			"mcp_tools": [
+				"cfo_close_status"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close"
+			],
+			"path": "plugins/topy-ai-cfo-quickbooks/skills/qbo-close-books/SKILL.md"
+		},
+		{
+			"id": "qbo-reconcile",
+			"name": "Reconcile a bank account",
+			"category": "quickbooks",
+			"category_name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"tier": "core",
+			"summary": "Reconciles each bank account to its statement — record the statement balance, compare it with QuickBooks, find the difference — and, with the founder, completes QuickBooks' own Reconcile in Chrome.",
+			"mcp_tools": [
+				"cfo_bank_balance_record",
+				"cfo_close_status",
+				"qbo_report",
+				"qbo_transactions_list",
+				"qbo_accounts_list"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close",
+				"qbo-bank-feed-match"
+			],
+			"path": "plugins/topy-ai-cfo-quickbooks/skills/qbo-reconcile/SKILL.md"
+		},
+		{
+			"id": "qbo-reports",
+			"name": "QuickBooks reports",
+			"category": "quickbooks",
+			"category_name": "QuickBooks service agent",
+			"plugin": "topy-ai-cfo-quickbooks",
+			"tier": "core",
+			"summary": "Reads QuickBooks' reports — profit and loss, balance sheet, cash flow, trial balance, general ledger, aged debtors and creditors — and explains them in plain words with the figures behind them.",
+			"mcp_tools": [
+				"qbo_report",
+				"qbo_accounts_list",
+				"qbo_transactions_list"
+			],
+			"pairs_with": [
+				"topy-cfo-management-accounts",
+				"topy-cfo-journals"
+			],
+			"path": "plugins/topy-ai-cfo-quickbooks/skills/qbo-reports/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-clevel-reports",
+			"name": "Finance reports for the c-levels",
+			"category": "reporting",
+			"category_name": "Reporting & runway",
+			"plugin": "topy-ai-cfo-reporting",
+			"tier": "core",
+			"summary": "One-screen finance reports for each AI cofounder — CEO, CMO, CTO, CRO, CPO, COO, CSO — and the board, each with the numbers that role owns, its flags, and the questions the CFO needs that role to answer.",
+			"mcp_tools": [
+				"cfo_report",
+				"cfo_management_accounts",
+				"investor_update_draft"
+			],
+			"pairs_with": [
+				"topy-cfo-management-accounts",
+				"topy-cfo-runway"
+			],
+			"path": "plugins/topy-ai-cfo-reporting/skills/topy-cfo-clevel-reports/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-management-accounts",
+			"name": "Management accounts",
+			"category": "reporting",
+			"category_name": "Reporting & runway",
+			"plugin": "topy-ai-cfo-reporting",
+			"tier": "core",
+			"summary": "The month's management accounts in one page — P&L against last month, cash and runway, balance sheet highlights, KPIs and the CFO's commentary — built from QuickBooks and Stripe after the close.",
+			"mcp_tools": [
+				"cfo_management_accounts",
+				"cfo_close_status",
+				"qbo_report",
+				"stripe_revenue_summary",
+				"kpi_value_record",
+				"kpis_list"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close",
+				"topy-cfo-clevel-reports",
+				"qbo-reports"
+			],
+			"path": "plugins/topy-ai-cfo-reporting/skills/topy-cfo-management-accounts/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-runway",
+			"name": "Runway and cash plan",
+			"category": "reporting",
+			"category_name": "Reporting & runway",
+			"plugin": "topy-ai-cfo-reporting",
+			"tier": "core",
+			"summary": "How long the cash lasts, the cash floor, and what to do about it — from real monthly net in QuickBooks and Stripe's pending balance, with three costed options when runway is under 12 months.",
+			"mcp_tools": [
+				"cfo_brief",
+				"cfo_management_accounts",
+				"runway_get",
+				"plan_vs_actual_get",
+				"financial_scenarios_list",
+				"financial_scenario_create",
+				"cfo_goals_get"
+			],
+			"pairs_with": [
+				"topy-cfo-goals",
+				"topy-cfo-management-accounts"
+			],
+			"path": "plugins/topy-ai-cfo-reporting/skills/topy-cfo-runway/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-uk-deadlines",
+			"name": "UK filing deadlines",
+			"category": "compliance",
+			"category_name": "UK compliance",
+			"plugin": "topy-ai-cfo-compliance",
+			"tier": "core",
+			"summary": "Every UK company deadline in one list — annual accounts, Corporation Tax payment and CT600 (split when the first period is over 12 months), confirmation statement — from Companies House, with days left and who does it.",
+			"mcp_tools": [
+				"cfo_company_get",
+				"cfo_company_set",
+				"cfo_deadlines"
+			],
+			"pairs_with": [
+				"topy-cfo-year-end",
+				"topy-cfo-vat-watch"
+			],
+			"path": "plugins/topy-ai-cfo-compliance/skills/topy-cfo-uk-deadlines/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-vat-watch",
+			"name": "VAT threshold watch",
+			"category": "compliance",
+			"category_name": "UK compliance",
+			"plugin": "topy-ai-cfo-compliance",
+			"tier": "core",
+			"summary": "Watches taxable turnover over the rolling 12 months against the UK VAT registration threshold (£90,000) and warns early, so the company registers on time — or confirms it doesn't need to.",
+			"mcp_tools": [
+				"cfo_vat_watch",
+				"cfo_company_get",
+				"stripe_revenue_summary"
+			],
+			"pairs_with": [
+				"topy-cfo-uk-deadlines"
+			],
+			"path": "plugins/topy-ai-cfo-compliance/skills/topy-cfo-vat-watch/SKILL.md"
+		},
+		{
+			"id": "topy-cfo-year-end",
+			"name": "Year-end preparation",
+			"category": "compliance",
+			"category_name": "UK compliance",
+			"plugin": "topy-ai-cfo-compliance",
+			"tier": "core",
+			"summary": "Gets a financial year ready for the statutory accounts and the CT600 — every month closed, trial balance, year-end adjustments, tax add-backs — as a checklist with figures for the founder or their accountant.",
+			"mcp_tools": [
+				"cfo_close_status",
+				"cfo_deadlines",
+				"qbo_report",
+				"cfo_share_capital",
+				"qbo_journal_create"
+			],
+			"pairs_with": [
+				"topy-cfo-month-end-close",
+				"topy-cfo-uk-deadlines",
+				"topy-cfo-journals"
+			],
+			"path": "plugins/topy-ai-cfo-compliance/skills/topy-cfo-year-end/SKILL.md"
+		}
+	]
+}

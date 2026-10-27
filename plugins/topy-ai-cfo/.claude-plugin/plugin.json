@@ -1,0 +1,20 @@
+{
+	"name": "topy-ai-cfo",
+	"version": "0.1.0",
+	"description": "TOPY AI CFO core: connects the TOPY CFO MCP server and runs the CFO day to day — Daily CFO brief, Connect the AI CFO, CFO goals, First set-up of the books.",
+	"author": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai",
+		"url": "https://topy.ai"
+	},
+	"homepage": "https://topy.ai/developers",
+	"repository": "https://github.com/TOPY-AI-LTD/TOPY-AI-CFO-Skills",
+	"license": "MIT",
+	"keywords": [
+		"topy.ai",
+		"ai-cfo",
+		"bookkeeping",
+		"core"
+	],
+	"privacyPolicyUrl": "https://topy.ai/privacy"
+}

@@ -1,0 +1,104 @@
+{
+	"$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+	"name": "topy-ai-cfo",
+	"owner": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai"
+	},
+	"metadata": {
+		"description": "AI CFO skills for founders, built for TOPY.AI: a senior CFO, accountant and bookkeeper on your own Stripe and QuickBooks. Core skills run on the TOPY CFO MCP server (https://topy.ai/mcp/cfo); QuickBooks' bank feed and rules are done in Chrome with the checks in each skill; standalone skills are finance methods that work anywhere.",
+		"version": "0.1.0"
+	},
+	"plugins": [
+		{
+			"name": "topy-ai-cfo",
+			"source": "./plugins/topy-ai-cfo",
+			"description": "TOPY AI CFO core: connects the TOPY CFO MCP server and runs the CFO day to day — Daily CFO brief, Connect the AI CFO, CFO goals, First set-up of the books.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"core"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-bookkeeping",
+			"source": "./plugins/topy-ai-cfo-bookkeeping",
+			"description": "TOPY AI CFO Bookkeeping & close skills (4): Categorise transactions (UK), Journals and adjustments, Month-end close, Share capital. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"bookkeeping"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-stripe",
+			"source": "./plugins/topy-ai-cfo-stripe",
+			"description": "TOPY AI CFO Stripe service agent skills (3): Stripe's official MCP (money moves), Stripe revenue operations, Stripe into the books. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"stripe"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-quickbooks",
+			"source": "./plugins/topy-ai-cfo-quickbooks",
+			"description": "TOPY AI CFO QuickBooks service agent skills (5): Match the bank feed (Chrome), Bank rules (Chrome), Lock a closed month, Reconcile a bank account, QuickBooks reports. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"quickbooks"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-reporting",
+			"source": "./plugins/topy-ai-cfo-reporting",
+			"description": "TOPY AI CFO Reporting & runway skills (3): Finance reports for the c-levels, Management accounts, Runway and cash plan. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"reporting"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-compliance",
+			"source": "./plugins/topy-ai-cfo-compliance",
+			"description": "TOPY AI CFO UK compliance skills (3): UK filing deadlines, VAT threshold watch, Year-end preparation. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bookkeeping",
+				"compliance"
+			]
+		},
+		{
+			"name": "topy-ai-cfo-all",
+			"source": "./plugins/topy-ai-cfo-all",
+			"description": "All 22 TOPY AI CFO skills in one install: AI CFO core (MCP), Bookkeeping & close, Stripe service agent, QuickBooks service agent, Reporting & runway, UK compliance.",
+			"version": "0.1.0",
+			"category": "productivity",
+			"keywords": [
+				"topy.ai",
+				"ai-cfo",
+				"bundle"
+			]
+		}
+	]
+}

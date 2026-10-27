@@ -1,0 +1,27 @@
+{
+	"name": "topy-ai-cfo-all",
+	"version": "0.1.0",
+	"description": "All 22 TOPY AI CFO skills in one install: AI CFO core (MCP), Bookkeeping & close, Stripe service agent, QuickBooks service agent, Reporting & runway, UK compliance.",
+	"author": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai",
+		"url": "https://topy.ai"
+	},
+	"homepage": "https://topy.ai/developers",
+	"repository": "https://github.com/TOPY-AI-LTD/TOPY-AI-CFO-Skills",
+	"license": "MIT",
+	"keywords": [
+		"topy.ai",
+		"ai-cfo",
+		"bundle"
+	],
+	"privacyPolicyUrl": "https://topy.ai/privacy",
+	"dependencies": [
+		"topy-ai-cfo",
+		"topy-ai-cfo-bookkeeping",
+		"topy-ai-cfo-stripe",
+		"topy-ai-cfo-quickbooks",
+		"topy-ai-cfo-reporting",
+		"topy-ai-cfo-compliance"
+	]
+}

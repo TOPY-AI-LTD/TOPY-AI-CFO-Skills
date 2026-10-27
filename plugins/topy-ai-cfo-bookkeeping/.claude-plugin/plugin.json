@@ -1,0 +1,20 @@
+{
+	"name": "topy-ai-cfo-bookkeeping",
+	"version": "0.1.0",
+	"description": "TOPY AI CFO Bookkeeping & close skills (4): Categorise transactions (UK), Journals and adjustments, Month-end close, Share capital. Add the topy-ai-cfo plugin too, for the core skills and the CFO MCP server.",
+	"author": {
+		"name": "TOPY AI LTD",
+		"email": "startup@topy.ai",
+		"url": "https://topy.ai"
+	},
+	"homepage": "https://topy.ai/developers",
+	"repository": "https://github.com/TOPY-AI-LTD/TOPY-AI-CFO-Skills",
+	"license": "MIT",
+	"keywords": [
+		"topy.ai",
+		"ai-cfo",
+		"bookkeeping",
+		"bookkeeping"
+	],
+	"privacyPolicyUrl": "https://topy.ai/privacy"
+}
