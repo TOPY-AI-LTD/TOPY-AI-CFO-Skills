@@ -10,6 +10,7 @@ Rules for driving QuickBooks in Chrome
 8. Afterwards verify with the API: qbo_transactions_list, qbo_accounts_list (bank balances), qbo_bank_rule_save status applied.
 
 Create a bank rule
+0. On Accounting → Rules, paste RULE_FORM_HELPERS and run __cfoRules(): the rules QuickBooks already has (compare with qbo_bank_rules_list).
 1. qbo_bank_rules_list / qbo_bank_rules_suggest → the rule spec (save it with qbo_bank_rule_save, status proposed).
 2. Accounting → Rules → New rule: name; Money out/in; the bank account only (untick the others); conditions;
    All/Any; Test rule → must equal expected_matches.

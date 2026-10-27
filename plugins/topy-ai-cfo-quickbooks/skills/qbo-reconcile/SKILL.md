@@ -17,8 +17,8 @@ differ, finds why.
 - At the month end (part of the close), or "QuickBooks says £x but the bank says £y".
 
 ## Before you start
-- The statement balance at the month end for each account (from the founder, or the "Bank" figure on QuickBooks' bank
-  transactions page read in Chrome).
+- The statement balance at the month end for each account (from the founder's statement). In Chrome, `__cfo.accounts()` on
+  Bank transactions gives the bank's current balance against what's posted — today's figure, not the month end's.
 
 ## Workflow
 1. `cfo_bank_balance_record` for each account and date.
@@ -27,6 +27,7 @@ differ, finds why.
    wrong month (`qbo_transactions_list` around the month end); a duplicate (same amount and date twice); a missing opening balance.
 4. Fix the cause, never journal the difference away; record and check again.
 5. Optional, with the founder: QuickBooks' Accounting → Reconcile in Chrome, statement date and ending balance, tick to a difference of 0, finish.
+   A company that has never reconciled there first sees an intro page ("Get started"): that's normal, not an error.
 
 ## Output
 | Account | Statement | Books | Difference | Cause |

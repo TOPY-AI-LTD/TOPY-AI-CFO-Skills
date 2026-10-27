@@ -1,7 +1,7 @@
 {
 	"name": "TOPY.AI AI CFO skills",
 	"description": "AI CFO skills for founders, built for TOPY.AI: a senior CFO, accountant and bookkeeper on your own Stripe and QuickBooks. Core skills run on the TOPY CFO MCP server (https://topy.ai/mcp/cfo); QuickBooks' bank feed and rules are done in Chrome with the checks in each skill; standalone skills are finance methods that work anywhere.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"updated": "2026-10-27",
 	"publisher": {
 		"name": "TOPY AI LTD",

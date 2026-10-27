@@ -14,6 +14,7 @@ Match a Stripe payout (or another booked transfer)
 2. Open QuickBooks → Accounting → Bank transactions → the bank account; search "stripe" (or the amount).
 3. Paste BANK_FEED_HELPERS. For each expected transfer: __cfo.match('DD/MM/YYYY', '123.45') → only if "ready", press Enter.
 4. Wait ~10 s; __cfo.pending() must drop by 1. Then the next one. The Posted tab shows "Matched Transfer".
+5. At the end __cfo.accounts(): for each account Bank and Posted should be equal (difference 0).
 
 Pair a transfer between the company's own accounts
 1. Search the description (e.g. "Savings") on the paying account.

@@ -23,6 +23,8 @@ created in QuickBooks' page — and tested first, because a rule that matches mo
 - The founder signs in to QuickBooks in Chrome. Paste `references/rule-helpers.js` (`cfo-cli chrome-kit rules`).
 
 ## Workflow
+0. Accounting → Rules: `__cfoRules()` lists the rules QuickBooks already has (name, conditions, category, payee, auto-post,
+   status). Compare with `qbo_bank_rules_list`; a rule only in QuickBooks → save its spec with status applied.
 1. Accounting → Rules → New rule. Name; Money out / Money in; the bank account only (untick the others).
 2. Conditions: Bank text contains <text> (and Amount equals <x> for one-offs); All or Any.
 3. **Test rule.** The count must equal `expected_matches`. Different → don't save; look at the lines (a descriptor can be an

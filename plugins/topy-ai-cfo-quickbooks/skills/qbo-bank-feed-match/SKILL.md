@@ -30,7 +30,8 @@ this skill matches only what the books expect, line by line, checking every targ
 4. Transfers between the company's own accounts show PAIR: `__cfo.pair('DD/MM/YYYY', '300.00', '<other account>')` → `ready` → Enter.
    "2 suggested pairs found" → open the line and choose the other account's line with the same date, or ask the founder.
 5. Anything not `ready` (rows≠1, suggestion differs): skip it and report it. Three failures in a row: stop and ask.
-6. Verify: the Posted tab shows "Matched Transfer" for each; `qbo_accounts_list` — each bank account equals the bank's figure.
+6. Verify: the Posted tab shows "Matched Transfer" for each (`__cfo.rows()` there); `__cfo.accounts()` — Bank and Posted equal for
+   every account (difference 0); `qbo_accounts_list` — each bank account equals the bank's figure.
 
 ## Output
 | Date | Amount | Feed line | Matched to | Result |

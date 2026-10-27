@@ -1,6 +1,17 @@
 // Paste into QuickBooks Bank transactions (the page JavaScript tool). Generated from @topy-ai/cfo-cli chrome-kit.
 window.__cfo = {
   pending: () => (document.body.innerText.match(/Pending \((\d+)\)/) || [])[1],
+  // Each bank account's card: the bank's own balance against what's posted in QuickBooks (equal = nothing left to review).
+  accounts: () => [...document.querySelectorAll('div')]
+    .filter(d => /Bank:\s*-?[£$€]/.test(d.innerText) && /Posted:\s*-?[£$€]/.test(d.innerText)
+      && ![...d.children].some(c => /Bank:/.test(c.innerText) && /Posted:/.test(c.innerText)))
+    .map(d => {
+      const money = (s) => s == null ? null : Number(s.replace(/[£$€,\s]/g, '').replace(/^\((.*)\)$/, '-$1'));
+      const name = ([...d.querySelectorAll('[title]')].map(e => e.getAttribute('title')).find(x => x && !/[£$€]/.test(x)) || d.innerText.split('\n')[0]).trim();
+      const bank = money((d.innerText.match(/Bank:\s*([-(]?[£$€][\d,.()]+)/) || [])[1]);
+      const posted = money((d.innerText.match(/Posted:\s*([-(]?[£$€][\d,.()]+)/) || [])[1]);
+      return { name, bank, posted, difference: Math.round((bank - posted) * 100) / 100 };
+    }),
   rows: () => [...document.querySelectorAll('[role="row"], tr')].filter(r => /\d\d\/\d\d\/\d{4}/.test(r.innerText))
     .map(r => r.innerText.replace(/\s+/g, ' ').trim()),
   _focus: (date, amount, want, button) => {
@@ -22,4 +33,4 @@ window.__cfo = {
   pair: (date, amount, otherAccount) => window.__cfo._focus(date, amount,
     t => /PAIR/.test(t) && t.includes(otherAccount) && !/suggested pairs/.test(t), 'Post'),
 };
-'ready to use: __cfo.pending(), __cfo.rows(), __cfo.match(date, amount), __cfo.pair(date, amount, account)'
+'ready to use: __cfo.pending(), __cfo.accounts(), __cfo.rows(), __cfo.match(date, amount), __cfo.pair(date, amount, account)'

@@ -1,6 +1,6 @@
 {
 	"name": "topy-ai-cfo-all",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "All 22 TOPY AI CFO skills in one install: AI CFO core (MCP), Bookkeeping & close, Stripe service agent, QuickBooks service agent, Reporting & runway, UK compliance.",
 	"author": {
 		"name": "TOPY AI LTD",
