@@ -64,7 +64,7 @@ Categories: `core` (connect, brief, goals, setup — always installed), `bookkee
 
 ## Connect the MCP server
 
-`https://topy.ai/mcp/cfo` — the same TOPY.AI account and sign-in (OAuth) as the AI CEO; Stripe and QuickBooks are connected once in the TOPY.AI dashboard. For scheduled agents, an API key as `TOPY_API_KEY`.
+`https://topy.ai/mcp/cfo` — the same TOPY.AI account and sign-in (OAuth) as the AI CEO; Stripe and QuickBooks are connected once, in the chat (`topy-cfo-connect`). Without a browser, your one API key as `TOPY_API_KEY`; scheduled agents use the same key and mark their runs with the `X-Topy-Agent` header.
 
 ```sh
 npx @topy-ai/cfo-skills mcp -g     # prints the commands for Claude Code, Codex, Gemini CLI, Cursor and Pi

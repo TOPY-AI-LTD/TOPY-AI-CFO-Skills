@@ -22,14 +22,17 @@ TOPY account.
 ## Before you start
 - The CFO MCP server is `https://topy.ai/mcp/cfo` (remote) or `npx @topy-ai/cfo-mcp` (local); the CLI is `npx @topy-ai/cfo-cli`.
   All sign in with the founder's TOPY account. `account_get` confirms who is signed in.
-- Never ask for a Stripe secret key, a QuickBooks or bank password in chat: connections are made in the TOPY dashboard.
+- Never ask for a Stripe secret key, a QuickBooks or bank password: Stripe takes a read-only restricted key, which the founder
+  pastes once in the chat for `integration_key_connect` (TOPY keeps it encrypted); QuickBooks connects on its own sign-in page.
 
 ## Workflow
 1. `integrations_list`: which of Stripe and QuickBooks are connected, their status and last sync.
-2. Missing or `reconnect_required` → `integration_connect_link` for each and tell the founder what to do there:
-   - Stripe: create a **restricted key with read access only** (Balance, Balance transactions, Payouts, Charges, Invoices,
-     Customers, Subscriptions, Products, Disputes) and paste it in the dashboard. TOPY never moves money.
-   - QuickBooks: "Sign in with QuickBooks" and pick the company; the founder must be a QuickBooks admin.
+2. Missing or `reconnect_required` → connect each in the chat:
+   - Stripe: the founder creates a **restricted key with read access only** (Balance, Balance transactions, Payouts, Charges, Invoices,
+     Customers, Subscriptions, Products, Disputes) and pastes it in the chat; pass it to `integration_key_connect` (preview, then
+     confirm) and never repeat it. TOPY never moves money.
+   - QuickBooks: `integration_connect_link` gives QuickBooks' own sign-in link: "Sign in with QuickBooks" and pick the company;
+     the founder must be a QuickBooks admin.
 3. Ask for the Companies House number; `cfo_company_set` with it (it reads incorporation date, next accounts and confirmation
    statement), plus whether the company is VAT-registered, when the books start (the first bank day) and a cash floor.
 4. `cfo_deadlines`: show the next three deadlines so the founder sees the CFO is live.
@@ -47,7 +50,8 @@ Next: topy-cfo-setup (first time) or topy-cfo-brief (every day)
 
 ## Guardrails
 - Changes take two calls: a preview first, then `confirm: true` with the `confirmation` after the founder agrees.
-- Never handle passwords, secret keys or bank logins; never type them into a browser.
+- Never handle passwords, secret keys or bank logins; never type them into a browser. The Stripe restricted key goes only into
+  `integration_key_connect`.
 
 ## Related skills
 - `topy-cfo-setup` — the first set-up of the books.

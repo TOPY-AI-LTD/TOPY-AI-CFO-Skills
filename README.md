@@ -45,7 +45,7 @@ See the [installer README](packages/skills/README.md).
 ## Connect TOPY.AI
 
 `https://topy.ai/mcp/cfo` — OAuth with your TOPY.AI account (the same one as the AI CEO). Connect Stripe (a read-only
-restricted key) and QuickBooks once in the TOPY.AI dashboard.
+restricted key) and QuickBooks once, in the chat (`topy-cfo-connect`).
 
 | Client | How |
 |---|---|

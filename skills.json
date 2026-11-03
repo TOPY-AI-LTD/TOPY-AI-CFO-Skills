@@ -90,6 +90,7 @@
 				"account_get",
 				"integrations_list",
 				"integration_connect_link",
+				"integration_key_connect",
 				"cfo_company_get",
 				"cfo_company_set",
 				"cfo_deadlines"
